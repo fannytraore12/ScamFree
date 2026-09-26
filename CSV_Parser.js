@@ -6,6 +6,7 @@ function loadEmails(filepath,limit = 7000) {
         const data = [];
         let count = 0;
         fs.createReadStream(filepath)
+        .on("error", reject)
         .pipe(csv())
         .on("data",(row) =>  {
             if (count >= limit) return;
